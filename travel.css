@@ -1,0 +1,26 @@
+.domestic{
+    text-align: center
+    font-family: cursive
+    color: brown
+}
+
+.international{
+    text-align: right
+    font-family: bold
+} 
+
+.light{
+    color: hsla(100, 0%, 80%, 1)
+}
+
+.heavy{
+    color: hsla(100, 0%, 20%, 1)
+}
+
+table .light{
+    background: hsla(100, 0%, 60%, 1)  
+}
+
+table .heavy{
+    background: hsla(100, 0%, 5%, 1)
+}

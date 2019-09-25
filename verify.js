@@ -13,7 +13,7 @@
   // Part 1
   target = document.querySelectorAll("#part01 ol li");
   top = document.getElementById("part01");
-  top.classList.add(target && target.length == atoms.length ? "OK" : "FAI");
+  top.classList.add(target && target.length == atoms.length ? "OK" : "FAIL");
 
   // Part 2
 

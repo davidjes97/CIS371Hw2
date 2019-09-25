@@ -66,21 +66,41 @@ for (let k = 0; k < 50; k++) {
 
 /*--- begin answer part01 ---*/
 let one = document.querySelector("#part01");
-let atomList = document.createElement("ol");
-one.appendChild(atomList);
-let listItem = document.createElement("li");
-for each (item in atoms){
-    atomList.appendChild(listItem);
-    listItem.append(item);
+let orderList = document.createElement("ol");
+one.appendChild(orderList);
+for(let i = 0; i < N; i++){
+    let listItem = document.createElement("li");
+    orderList.appendChild(listItem);
+    listItem.appendChild(document.createTextNode(atoms[i]));
 }
-//let atomList = document.createTextNode(atoms);
 /*--- end answer part01 ---*/
 
 // Code for part 2
 // Don't rename the following two variables!
 /*--- begin answer part02 ---*/
-const myDomesticTravel = {};
-const myInternationalTravel = {};
+
+const myDomesticTravel = {destination: "Denver, Colorado", dateOfVisit: "March 2018", isAbroad: false};
+const myInternationalTravel = {destination: "Vienna, Austria", dateOfVisit: "June 2019", isAbroad: true};
+
+let two = document.querySelector("#part02");
+
+const paragraphs = function(trip){ 
+    let section = "Going to " + trip.destination + " was an incredible experience, I went there in " + trip.dateOfVisit + ".";
+    let par = document.createElement("p");
+    let node = document.createTextNode(section);
+    par.appendChild(node);
+    return par;
+};
+
+let dom = paragraphs(myDomesticTravel);
+let inter = paragraphs(myInternationalTravel);
+
+dom.classList.add("domestic");
+inter.classList.add("international");
+
+two.appendChild(dom);
+two.appendChild(inter);
+
 /*--- end answer part02 ---*/
 
 // Code for part 3
@@ -119,15 +139,71 @@ for (let k = 0; k < 50; k++) {
 }
 
 /*--- begin answer part03 ---*/
+let three = document.querySelector("#part03");
+let list = document.createElement("ol");
+
+atomObjects.forEach(function(item){
+    let listItem = document.createElement("li");
+    let element = document.createTextNode(item.name + "(weight: " + item.weight.toFixed(1) + ")");
+    
+    listItem.classList.add(item.weight > 150 ? "heavy" : "light");
+    listItem.appendChild(element);
+    list.append(listItem);    
+});
+three.append(list);
+
 /*--- end answer part03 ---*/
 
 // Code for part 4
 /*--- begin answer part04 ---*/
+let four = document.querySelector("#part04");
+let table = document.createElement("table");
+let tableBody = document.createElement("tbody");
+function createTable(){
+
+  for(let i = 0; i < atomObjects.length + 1; i++ ){
+      let tableRow = document.createElement('tr');
+    for(let j = 0; j < 2; j++){
+      if(i == (atomObjects.length + 1) && j == 1){
+        break;
+      }
+      else{
+        if(i == 0 && j == 0){
+          let tableHeader = document.createElement('th');
+          tableHeader.appendChild(document.createTextNode("Atom"));
+          tableRow.appendChild(tableHeader);
+        }
+        else if(i == 0 && j == 1){
+          let tableHeader = document.createElement('th');
+          tableHeader.appendChild(document.createTextNode("Weight"));
+          tableRow.appendChild(tableHeader);
+        }
+        else{
+          let tableData = document.createElement('td');
+          if(j == 0){
+            tableData.appendChild(document.createTextNode(atomObjects[i-1].name))
+          }
+          else{
+            tableData.appendChild(document.createTextNode(atomObjects[i-1].weight))
+          }
+          tableRow.classList.add(atomObjects[i-1].weight > 150 ? "heavy" : "light");
+          tableRow.appendChild(tableData);
+        }
+      }
+    }
+    tableBody.appendChild(tableRow);
+  }
+  table.appendChild(tableBody);
+};
+
+createTable();
+four.appendChild(table);
+
+
+
+
 /*--- end answer part04 ---*/
 
-// Code for part 4
-/*--- begin answer part04 ---*/
-/*--- end answer part04 ---*/
 
 // Code for part 5 (Extra credit)
 /*--- begin answer part05 ---*/
